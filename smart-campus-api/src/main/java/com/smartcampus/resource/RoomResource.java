@@ -48,4 +48,26 @@ public class RoomResource {
 
         return Response.ok(room).build();
     }
+
+    @DELETE
+    @Path("/{roomId}")
+    public Response deleteRoom(@PathParam("roomId") String roomId) {
+        Room room = DataStore.rooms.get(roomId);
+
+        if (room == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Room not found")
+                    .build();
+        }
+
+        if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
+            return Response.status(Response.Status.CONFLICT)
+                    .entity("Room cannot be deleted because sensors are assigned to it")
+                    .build();
+        }
+
+        DataStore.rooms.remove(roomId);
+
+        return Response.ok("Room deleted successfully").build();
+    }
 }
