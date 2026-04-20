@@ -10,6 +10,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import com.smartcampus.exception.SensorUnavailableException;
+
 import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -47,9 +49,7 @@ public class SensorReadingResource {
         }
 
         if ("MAINTENANCE".equalsIgnoreCase(sensor.getStatus())) {
-            return Response.status(Response.Status.FORBIDDEN)
-                    .entity("Sensor is under maintenance and cannot accept readings")
-                    .build();
+            throw new SensorUnavailableException("Sensor is under maintenance and cannot accept readings");
         }
 
         if (reading == null || reading.getId() == null || reading.getId().isBlank()) {
