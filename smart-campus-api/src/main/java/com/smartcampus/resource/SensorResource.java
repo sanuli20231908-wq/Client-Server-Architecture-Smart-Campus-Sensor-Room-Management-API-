@@ -7,6 +7,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import com.smartcampus.exception.LinkedResourceNotFoundException;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +35,7 @@ public class SensorResource {
 
         Room room = DataStore.rooms.get(sensor.getRoomId());
         if (room == null) {
-            return Response.status(422)
-                    .entity("Referenced room does not exist")
-                    .build();
+            throw new LinkedResourceNotFoundException("Referenced room does not exist");
         }
 
         DataStore.sensors.put(sensor.getId(), sensor);
