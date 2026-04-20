@@ -6,6 +6,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import com.smartcampus.exception.RoomNotEmptyException;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +63,7 @@ public class RoomResource {
         }
 
         if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("Room cannot be deleted because sensors are assigned to it")
-                    .build();
+            throw new RoomNotEmptyException("Room cannot be deleted because sensors are assigned to it");
         }
 
         DataStore.rooms.remove(roomId);
