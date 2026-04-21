@@ -8,9 +8,11 @@ import com.smartcampus.mapper.SensorUnavailableExceptionMapper;
 import com.smartcampus.resource.DiscoveryResource;
 import com.smartcampus.resource.RoomResource;
 import com.smartcampus.resource.SensorResource;
+
 import jakarta.ws.rs.ApplicationPath;
-import org.glassfish.jersey.server.ResourceConfig;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.server.ResourceConfig;
 
 @ApplicationPath("/api/v1")
 public class SmartCampusApplication extends ResourceConfig {

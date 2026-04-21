@@ -1,20 +1,20 @@
 package com.smartcampus.resource;
 
+import com.smartcampus.exception.LinkedResourceNotFoundException;
 import com.smartcampus.model.Room;
 import com.smartcampus.model.Sensor;
 import com.smartcampus.store.DataStore;
+
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import com.smartcampus.exception.LinkedResourceNotFoundException;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Path("/sensors")
 @Produces(MediaType.APPLICATION_JSON)
@@ -102,5 +102,5 @@ public class SensorResource {
     @Path("/{sensorId}/readings")
     public SensorReadingResource getSensorReadingResource(@PathParam("sensorId") String sensorId) {
         return new SensorReadingResource(sensorId);
-}
+    }
 }

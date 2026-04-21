@@ -1,12 +1,12 @@
 package com.smartcampus.resource;
 
+import com.smartcampus.exception.RoomNotEmptyException;
 import com.smartcampus.model.Room;
 import com.smartcampus.store.DataStore;
+
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import com.smartcampus.exception.RoomNotEmptyException;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class RoomResource {
                     .build();
         }
 
-       if (DataStore.rooms.containsKey(room.getId())) {
+        if (DataStore.rooms.containsKey(room.getId())) {
             return Response.status(Response.Status.CONFLICT)
                     .entity(Map.of("error", "Room with this id already exists"))
                     .build();
@@ -54,7 +54,7 @@ public class RoomResource {
         return Response.created(URI.create("/api/v1/rooms/" + room.getId()))
                 .entity(room)
                 .build();
-}
+    }
 
     @GET
     @Path("/{roomId}")
