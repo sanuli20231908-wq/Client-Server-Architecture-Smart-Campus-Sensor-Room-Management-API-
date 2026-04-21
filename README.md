@@ -161,3 +161,17 @@ Hypermedia is considered a hallmark of advanced RESTful design because it allows
 
 Instead of relying only on external documentation, the client can follow these links to navigate the API step by step. This makes it easier for client developers because they do not need to know all endpoints in advance. It also makes the API more flexible, as changes to URLs or structure can be handled by updating the links in the responses rather than modifying the client code.
 
+### Part 2: Room Management
+#### Room Resource Implementation
+
+##### Question 03:
+
+When returning a list of rooms, what are the implications of returning only
+IDs versus returning the full room objects? Consider network bandwidth and client side
+processing.
+
+##### Answer:
+
+Returning only IDs reduces the amount of data sent over the network, which improves performance. However, the client must make additional requests to get full details, increasing client-side processing.
+
+Returning full room objects provides all information in one response, making it easier for the client to use, but it increases the response size. In this project, full room objects are returned to keep the interaction simple.
