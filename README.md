@@ -29,19 +29,15 @@ Run the following command:
 mvn compile
 ```
 
-1. Run
-```
+### Step 03: Run the project
+```bash
 mvn exec:java
 ```
 
-2. Open
+### Step 04: Open the localhost
 ```
 http://localhost:8080/api/v1
-
-Commit message:
 ```
-
-Add README introduction and run instructions
 
 ## API Endpoints
 
@@ -71,3 +67,6 @@ The API contains three main areas: rooms, sensors and sensor readings.
 - `GET /api/v1/sensors/{sensorId}/readings` - get all readings for a sensor
 - `POST /api/v1/sensors/{sensorId}/readings` - add a new reading for a sensor
 ```
+
+## Curl Commands
+
