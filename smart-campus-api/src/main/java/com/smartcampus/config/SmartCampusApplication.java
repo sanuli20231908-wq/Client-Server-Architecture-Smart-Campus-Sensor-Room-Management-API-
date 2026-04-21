@@ -10,6 +10,7 @@ import com.smartcampus.resource.RoomResource;
 import com.smartcampus.resource.SensorResource;
 import jakarta.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 @ApplicationPath("/api/v1")
 public class SmartCampusApplication extends ResourceConfig {
@@ -25,6 +26,6 @@ public class SmartCampusApplication extends ResourceConfig {
 
         register(LoggingFilter.class);
 
-        packages("org.glassfish.jersey.jackson");
+        register(JacksonFeature.class);
     }
 }
