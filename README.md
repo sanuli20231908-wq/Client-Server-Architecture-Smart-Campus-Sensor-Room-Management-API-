@@ -208,4 +208,18 @@ The @Consumes(MediaType.APPLICATION_JSON) annotation means the endpoint only acc
 
 In this case, the framework returns a 415 Unsupported Media Type response. This is handled automatically by JAX-RS and ensures that only valid JSON data is processed by the API.
 
+#### Filtered Retrieval & Search
+
+##### Question 06:
+
+You implemented this filtering using @QueryParam. Contrast this with an alterna-
+tive design where the type is part of the URL path (e.g., /api/vl/sensors/type/CO2). Why
+is the query parameter approach generally considered superior for filtering and searching
+collections?
+
+##### Answer:
+
+Query parameters are better for filtering because they represent optional conditions on a collection, not a different resource. For example, GET /sensors?type=CO2 returns a filtered version of the same sensors collection, while still allowing all sensors to be retrieved when no filter is applied.
+
+Using a path like /sensors/type/CO2 suggests a separate resource, which can be misleading. It is also harder to extend, since adding more filters would require more complex paths. Query parameters make filtering clearer and more flexible.
 
