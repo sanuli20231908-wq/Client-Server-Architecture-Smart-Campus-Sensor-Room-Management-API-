@@ -238,3 +238,17 @@ troller class?
 The Sub-Resource Locator pattern allows nested resources to be handled by separate classes. In this project, reading-related operations are handled by a separate SensorReadingResource instead of being placed inside SensorResource.
 
 This improves separation of concerns, as each class is responsible for a specific resource. In large APIs, putting all nested paths in one controller would make it difficult to read and maintain. Splitting the logic into smaller classes makes the code easier to understand, test, and extend.
+
+### Part 5: Advanced Error Handling, Exception Mapping & Logging
+#### Dependency Validation
+
+##### Question 08:
+
+Why is HTTP 422 often considered more semantically accurate than a standard
+404 when the issue is a missing reference inside a valid JSON payload?
+
+##### Answer:
+
+HTTP 404 Not Found is used when the requested resource at a specific URL does not exist. In this case, the endpoint itself exists and the request is valid, but the JSON payload contains a reference to a resource that does not exist, such as an invalid roomId.
+
+HTTP 422 Unprocessable Entity is more accurate because the server understands the request but cannot process it due to invalid data in the payload. This helps the client understand that the issue is with the request content rather than the endpoint.
