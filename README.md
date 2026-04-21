@@ -15,7 +15,7 @@ The main technologies used in this project are:
 
 Java is used as the main programming language. Maven is used to manage dependencies and build the project. JAX-RS is used to create the REST API. Grizzly is used as the lightweight server to run the application. Jackson is used to convert Java objects into JSON responses and to read JSON request bodies.
 
-## Step 01: How to build and run
+## How to build and run
 
 Before running the project, install Java and Maven to the system.
 
@@ -23,10 +23,6 @@ Before running the project, install Java and Maven to the system.
 Open the terminal and go to the project folder.
 
 ### Step 02: Compile the project
-Run the following command:
-
-## Step 02: Compile the project
-
 Run the following command:
 
 ```bash
@@ -47,7 +43,7 @@ Commit message:
 
 Add README introduction and run instructions
 
-## Step 03: API Endpoints
+## API Endpoints
 
 The API contains three main areas: rooms, sensors and sensor readings.
 
