@@ -43,7 +43,7 @@ http://localhost:8080/api/v1
 
 The API contains three main areas: rooms, sensors and sensor readings.
 
-### Rooms
+### Step 01: Rooms
 
 ```
 - `GET /api/v1/rooms` - get all rooms
@@ -52,7 +52,7 @@ The API contains three main areas: rooms, sensors and sensor readings.
 - `DELETE /api/v1/rooms/{roomId}` - delete a room
 ```
 
-### Sensors
+### Step 02: Sensors
 
 ```
 - `GET /api/v1/sensors` - get all sensors
@@ -61,7 +61,7 @@ The API contains three main areas: rooms, sensors and sensor readings.
 - `GET /api/v1/sensors?type=CO2` - filter sensors by type
 ```
 
-### Sensor Readings
+### Step 03: Sensor Readings
 
 ```
 - `GET /api/v1/sensors/{sensorId}/readings` - get all readings for a sensor
@@ -69,4 +69,28 @@ The API contains three main areas: rooms, sensors and sensor readings.
 ```
 
 ## Curl Commands
+
+### Step 01: Create a room
+
+This command creates a new room in the system.
+
+```
+curl -X POST http://localhost:8080/api/v1/rooms \
+-H "Content-Type: application/json" \
+-d "{\"id\":\"LIB-301\",\"name\":\"Library Quiet Study\",\"capacity\":50}"
+```
+
+Expected response: 201 created with the new room object
+
+### Step 02: Create a sensor
+
+This command creates a new sensor and links it to an existing room.
+
+```
+curl -X POST http://localhost:8080/api/v1/sensors \
+-H "Content-Type: application/json" \
+-d "{\"id\":\"CO2-001\",\"type\":\"CO2\",\"status\":\"ACTIVE\",\"currentValue\":400.0,\"roomId\":\"LIB-301\"}"
+```
+
+Expected response: 201 created with the new sensor object linked to LIB-301.
 
