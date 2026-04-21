@@ -28,4 +28,4 @@ Run the following command:
 ```bash
 mvn compile
 
-i.Run: 
+1) Run
