@@ -28,4 +28,5 @@ Run the following command:
 ```bash
 mvn compile
 
-1) Run
+1. Run
+```
