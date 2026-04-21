@@ -252,3 +252,18 @@ Why is HTTP 422 often considered more semantically accurate than a standard
 HTTP 404 Not Found is used when the requested resource at a specific URL does not exist. In this case, the endpoint itself exists and the request is valid, but the JSON payload contains a reference to a resource that does not exist, such as an invalid roomId.
 
 HTTP 422 Unprocessable Entity is more accurate because the server understands the request but cannot process it due to invalid data in the payload. This helps the client understand that the issue is with the request content rather than the endpoint.
+
+#### The Global Safety Net
+
+##### Question 09:
+
+From a cybersecurity standpoint, explain the risks associated with exposing
+internal Java stack traces to external API consumers. What specific information could an
+attacker gather from such a trace?
+
+##### Answer:
+
+Exposing Java stack traces is a security risk because they reveal internal details such as class names, method names, file paths, and line numbers. This gives attackers insight into the structure of the application and makes it easier to find weaknesses.
+
+For example, attackers may identify specific libraries or frameworks and look for known vulnerabilities. To prevent this, the application uses a global exception mapper to return a generic 500 response instead of exposing internal details.
+
