@@ -13,6 +13,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Set;
 
 @Path("/sensors")
 @Produces(MediaType.APPLICATION_JSON)
@@ -23,13 +25,38 @@ public class SensorResource {
     public Response createSensor(Sensor sensor) {
         if (sensor == null || sensor.getId() == null || sensor.getId().isBlank()) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Sensor id is required")
+                    .entity(Map.of("error", "Sensor id is required"))
+                    .build();
+        }
+
+        if (sensor.getType() == null || sensor.getType().isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Sensor type is required"))
+                    .build();
+        }
+
+        if (sensor.getStatus() == null || sensor.getStatus().isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Sensor status is required"))
+                    .build();
+        }
+
+        Set<String> validStatuses = Set.of("ACTIVE", "MAINTENANCE", "OFFLINE");
+        if (!validStatuses.contains(sensor.getStatus().toUpperCase())) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Sensor status must be ACTIVE, MAINTENANCE, or OFFLINE"))
                     .build();
         }
 
         if (sensor.getRoomId() == null || sensor.getRoomId().isBlank()) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("roomId is required")
+                    .entity(Map.of("error", "roomId is required"))
+                    .build();
+        }
+
+        if (DataStore.sensors.containsKey(sensor.getId())) {
+            return Response.status(Response.Status.CONFLICT)
+                    .entity(Map.of("error", "Sensor id already exists"))
                     .build();
         }
 
@@ -66,7 +93,7 @@ public class SensorResource {
 
         if (sensor == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Sensor not found")
+                    .entity(Map.of("error", "Sensor not found"))
                     .build();
         }
 
