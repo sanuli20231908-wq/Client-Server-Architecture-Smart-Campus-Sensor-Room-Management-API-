@@ -192,5 +192,20 @@ The first DELETE request removes the room and returns a success response. If the
 
 If the room still has sensors assigned, the deletion is blocked and a 409 Conflict is returned.
 
+### Part 3: Sensor Operations & Linking
+#### Sensor Resource & Integrity
+
+##### Question 05:
+
+We explicitly use the @Consumes (MediaType.APPLICATION_JSON) annotation on
+the POST method. Explain the technical consequences if a client attempts to send data in
+a different format, such as text/plain or application/xml. How does JAX-RS handle this
+mismatch?
+
+##### Answer:
+
+The @Consumes(MediaType.APPLICATION_JSON) annotation means the endpoint only accepts requests with a Content-Type of application/json. If a client sends data in another format such as text/plain or application/xml, JAX-RS will reject the request before it reaches the resource method.
+
+In this case, the framework returns a 415 Unsupported Media Type response. This is handled automatically by JAX-RS and ensures that only valid JSON data is processed by the API.
 
 
