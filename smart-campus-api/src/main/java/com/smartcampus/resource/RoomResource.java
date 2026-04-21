@@ -11,6 +11,7 @@ import com.smartcampus.exception.RoomNotEmptyException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Path("/rooms")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +27,25 @@ public class RoomResource {
     public Response createRoom(Room room) {
         if (room == null || room.getId() == null || room.getId().isBlank()) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Room id is required")
+                    .entity(Map.of("error", "Room id is required"))
+                    .build();
+        }
+        
+        if (room.getName() == null || room.getName().isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Room name is required"))
+                    .build();
+        }
+
+        if (room.getCapacity() < 0) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Room capacity cannot be negative"))
+                    .build();
+        }
+
+       if (DataStore.rooms.containsKey(room.getId())) {
+            return Response.status(Response.Status.CONFLICT)
+                    .entity(Map.of("error", "Room with this id already exists"))
                     .build();
         }
 
@@ -35,7 +54,7 @@ public class RoomResource {
         return Response.created(URI.create("/api/v1/rooms/" + room.getId()))
                 .entity(room)
                 .build();
-    }
+}
 
     @GET
     @Path("/{roomId}")
@@ -44,7 +63,7 @@ public class RoomResource {
 
         if (room == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Room not found")
+                    .entity(Map.of("error", "Room not found"))
                     .build();
         }
 
@@ -58,16 +77,17 @@ public class RoomResource {
 
         if (room == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Room not found")
+                    .entity(Map.of("error", "Room not found"))
                     .build();
         }
 
         if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
-            throw new RoomNotEmptyException("Room cannot be deleted because sensors are assigned to it");
+            throw new RoomNotEmptyException("Room cannot be deleted");
         }
 
         DataStore.rooms.remove(roomId);
 
-        return Response.ok("Room deleted successfully").build();
+        return Response.ok(Map.of("message", "Room deleted successfully")).build();
+
     }
 }
