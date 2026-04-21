@@ -175,3 +175,22 @@ processing.
 Returning only IDs reduces the amount of data sent over the network, which improves performance. However, the client must make additional requests to get full details, increasing client-side processing.
 
 Returning full room objects provides all information in one response, making it easier for the client to use, but it increases the response size. In this project, full room objects are returned to keep the interaction simple.
+
+#### Room Deletion & Safety Logic
+
+##### Question 04: 
+
+Is the DELETE operation idempotent in your implementation? Provide a detailed
+justification by describing what happens if a client mistakenly sends the exact same DELETE
+request for a room multiple times.
+
+##### Answer:
+
+The DELETE operation is idempotent in this implementation. Idempotent means that repeating the same request does not change the system state after the first execution.
+
+The first DELETE request removes the room and returns a success response. If the same request is sent again, the room no longer exists, so the API returns a 404 Not Found. Since the state does not change after the first deletion, the operation is considered idempotent.
+
+If the room still has sensors assigned, the deletion is blocked and a 409 Conflict is returned.
+
+
+
