@@ -267,3 +267,16 @@ Exposing Java stack traces is a security risk because they reveal internal detai
 
 For example, attackers may identify specific libraries or frameworks and look for known vulnerabilities. To prevent this, the application uses a global exception mapper to return a generic 500 response instead of exposing internal details.
 
+#### API Request & Response Logging Filters
+
+##### Question 10:
+
+Why is it advantageous to use JAX-RS filters for cross-cutting concerns like
+logging, rather than manually inserting Logger.info() statements inside every single re-
+source method?
+
+##### Answer:
+
+Using JAX-RS filters for logging is better because it separates logging logic from the business logic in resource methods. The filter handles logging for all requests and responses in one central place.
+
+This makes the code cleaner and easier to maintain. If changes are needed, they can be done in one place instead of updating every method. It also ensures that all requests are logged consistently without missing any endpoints.
