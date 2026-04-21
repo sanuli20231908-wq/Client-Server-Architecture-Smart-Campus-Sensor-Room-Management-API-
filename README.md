@@ -223,3 +223,18 @@ Query parameters are better for filtering because they represent optional condit
 
 Using a path like /sensors/type/CO2 suggests a separate resource, which can be misleading. It is also harder to extend, since adding more filters would require more complex paths. Query parameters make filtering clearer and more flexible.
 
+### Part 4: Deep Nesting with Sub - Resources
+#### The Sub-Resource Locator Pattern
+
+##### Question 07:
+
+Discuss the architectural benefits of the Sub-Resource Locator pattern. How
+does delegating logic to separate classes help manage complexity in large APIs compared
+to defining every nested path (e.g., sensors/{id}/readings/{rid}) in one massive con-
+troller class?
+
+##### Answer:
+
+The Sub-Resource Locator pattern allows nested resources to be handled by separate classes. In this project, reading-related operations are handled by a separate SensorReadingResource instead of being placed inside SensorResource.
+
+This improves separation of concerns, as each class is responsible for a specific resource. In large APIs, putting all nested paths in one controller would make it difficult to read and maintain. Splitting the logic into smaller classes makes the code easier to understand, test, and extend.
