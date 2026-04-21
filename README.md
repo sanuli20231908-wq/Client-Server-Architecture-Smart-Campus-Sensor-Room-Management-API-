@@ -36,3 +36,10 @@ mvn compile
 ```
 mvn exec:java
 ```
+
+2.Open
+```
+http://localhost:8080/api/v1
+
+Commit message:
+```
