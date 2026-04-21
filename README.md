@@ -68,3 +68,10 @@ The API contains three main areas: rooms, sensors and sensor readings.
 - `GET /api/v1/sensors/{sensorId}` - get one sensor by ID
 - `GET /api/v1/sensors?type=CO2` - filter sensors by type
 ```
+
+### Sensor Readings
+
+```
+- `GET /api/v1/sensors/{sensorId}/readings` - get all readings for a sensor
+- `POST /api/v1/sensors/{sensorId}/readings` - add a new reading for a sensor
+```
