@@ -28,8 +28,7 @@ Run the following command:
 
 Run the following command:
 
-```bash
+bash
 mvn compile
-```
 
 1. Run
