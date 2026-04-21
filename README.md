@@ -47,7 +47,7 @@ Commit message:
 
 Add README introduction and run instructions
 
-## API Endpoints
+## Step 03: API Endpoints
 
 The API contains three main areas: rooms, sensors and sensor readings.
 
@@ -60,3 +60,11 @@ The API contains three main areas: rooms, sensors and sensor readings.
 - `DELETE /api/v1/rooms/{roomId}` - delete a room
 ```
 
+### Sensors
+
+```
+- `GET /api/v1/sensors` - get all sensors
+- `POST /api/v1/sensors` - create a new sensor
+- `GET /api/v1/sensors/{sensorId}` - get one sensor by ID
+- `GET /api/v1/sensors?type=CO2` - filter sensors by type
+```
