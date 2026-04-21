@@ -6,12 +6,12 @@ This project is a RESTful API developed using JAX-RS for the Smart Campus course
 
 The main technologies used in this project are:
 
-- Java 17
+- Java 25 (LTS)
 - Maven
 - JAX-RS (Jersey)
 - Grizzly HTTP Server
 - Jackson for JSON processing
-- HashMap and ArrayList for in-memory storage
+- HashMap and ArrayList for in-memory data storage
 
 Java is used as the main programming language. Maven is used to manage dependencies and build the project. JAX-RS is used to create the REST API. Grizzly is used as the lightweight server to run the application. Jackson is used to convert Java objects into JSON responses and to read JSON request bodies.
 
@@ -30,11 +30,15 @@ mvn compile
 ```
 
 ### Step 03: Run the project
+Run the following command:
+
 ```bash
 mvn exec:java
 ```
 
-### Step 04: Open the localhost
+### Step 04: Open in browser or Postman
+Use the following URL:
+
 ```
 http://localhost:8080/api/v1
 ```
@@ -143,9 +147,9 @@ ditions.
 
 In JAX-RS, the default lifecycle of a resource class is pre-request. This means a new instance of the resource class is created for each incoming HTTP request and discarded after after the response is sent.
 
-Because of this behaviour, any data stored as instance variables inside the resource class will not persist between requests. To handle shared data in this project, a separate static `DataStore` class is used, where data is stored using collections such as `HashMap`.
+Because of this behaviour, any data stored as instance variables inside the resource class will not persist between requests. To handle shared data in this project, a separate static `DataStore` class is used, where data is stored using collections such as `Map`.
 
-However, since multiple requests can access these shared data structures at the same time, there is a risk of race conditions. To make this safer in a real world scenario, a thread-safe collection such as `ConcurrentHashMap` can be used instead of a regular `HashMap`, as it supports safe concurrent access.
+However, since multiple requests can access these shared data structures at the same time, there is a risk of race conditions. To make this safer in a real world scenario, a thread-safe collection such as `ConcurrentMap` can be used instead of a regular `Map`, as it supports safe concurrent access.
 
 #### The ”Discovery” Endpoint
 
