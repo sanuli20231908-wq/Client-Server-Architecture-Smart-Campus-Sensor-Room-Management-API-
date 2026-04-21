@@ -24,9 +24,12 @@ Open the terminal and go to the project folder.
 
 ### Step 02: Compile the project
 Run the following command:
+## Step 02: Compile the project
+
+Run the following command:
 
 ```bash
 mvn compile
+```
 
 1. Run
-```
