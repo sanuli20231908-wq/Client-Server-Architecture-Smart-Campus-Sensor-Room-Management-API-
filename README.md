@@ -131,7 +131,7 @@ curl http://localhost:8080/api/v1/sensors/CO2-001/readings
 ### Part 1: Service Architecture & Setup 
 #### Project & Application Configuration
 
-###### Question 01:
+##### Question 01:
 
 In your report, explain the default lifecycle of a JAX-RS Resource class. Is a
 new instance instantiated for every incoming request, or does the runtime treat it as a
@@ -147,4 +147,17 @@ Because of this behaviour, any data stored as instance variables inside the reso
 
 However, since multiple requests can access these shared data structures at the same time, there is a risk of race conditions. To make this safer in a real world scenario, a thread-safe collection such as `ConcurrentHashMap` can be used instead of a regular `HashMap`, as it supports safe concurrent access.
 
+#### The ”Discovery” Endpoint
+
+##### Question 02:
+
+Why is the provision of ”Hypermedia” (links and navigation within responses)
+considered a hallmark of advanced RESTful design (HATEOAS)? How does this approach
+benefit client developers compared to static documentation?
+
+##### Answer:
+
+Hypermedia is considered a hallmark of advanced RESTful design because it allows clients to discover API links dynamically through the responses returned by the server. This approach, often referred to as HATEOAS, means that the API provides links to related resources and actions within its responses.
+
+Instead of relying only on external documentation, the client can follow these links to navigate the API step by step. This makes it easier for client developers because they do not need to know all endpoints in advance. It also makes the API more flexible, as changes to URLs or structure can be handled by updating the links in the responses rather than modifying the client code.
 
