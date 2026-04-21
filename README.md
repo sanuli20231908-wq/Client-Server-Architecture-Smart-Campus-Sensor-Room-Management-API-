@@ -6,7 +6,7 @@ This project is a RESTful API developed using JAX-RS for the Smart Campus course
 
 The main technologies used in this project are:
 
-- Java 25 (LTS)
+- Java 17
 - Maven
 - JAX-RS (Jersey)
 - Grizzly HTTP Server
@@ -140,12 +140,12 @@ curl http://localhost:8080/api/v1/sensors/CO2-001/readings
 In your report, explain the default lifecycle of a JAX-RS Resource class. Is a
 new instance instantiated for every incoming request, or does the runtime treat it as a
 singleton? Elaborate on how this architectural decision impacts the way you manage and
-synchronize your in-memory data structures (maps/lists) to prevent data loss or race con-
+synchronize your in-memory data structures (maps/lists) to vent data loss or race con-
 ditions.
 
 ##### Answer:
 
-In JAX-RS, the default lifecycle of a resource class is pre-request. This means a new instance of the resource class is created for each incoming HTTP request and discarded after after the response is sent.
+In JAX-RS, the default lifecycle of a resource class is per-request. This means a new instance of the resource class is created for each incoming HTTP request and discarded after after the response is sent.
 
 Because of this behaviour, any data stored as instance variables inside the resource class will not persist between requests. To handle shared data in this project, a separate static `DataStore` class is used, where data is stored using collections such as `Map`.
 
