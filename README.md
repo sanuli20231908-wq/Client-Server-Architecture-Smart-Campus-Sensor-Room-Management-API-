@@ -37,9 +37,15 @@ mvn compile
 mvn exec:java
 ```
 
-2.Open
+2. Open
 ```
 http://localhost:8080/api/v1
 
 Commit message:
 ```
+
+Add README introduction and run instructions
+
+## API Endpoints
+
+The API contains three main areas: rooms, sensors and sensor readings.
