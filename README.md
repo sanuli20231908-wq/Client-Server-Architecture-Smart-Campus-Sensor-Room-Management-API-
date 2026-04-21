@@ -80,7 +80,7 @@ curl -X POST http://localhost:8080/api/v1/rooms \
 -d "{\"id\":\"LIB-301\",\"name\":\"Library Quiet Study\",\"capacity\":50}"
 ```
 
-Expected response: 201 created with the new room object
+- Expected response: 201 created with the new room object.
 
 ### Step 02: Create a sensor
 
@@ -92,5 +92,36 @@ curl -X POST http://localhost:8080/api/v1/sensors \
 -d "{\"id\":\"CO2-001\",\"type\":\"CO2\",\"status\":\"ACTIVE\",\"currentValue\":400.0,\"roomId\":\"LIB-301\"}"
 ```
 
-Expected response: 201 created with the new sensor object linked to LIB-301.
+- Expected response: 201 created with the new sensor object linked to LIB-301.
 
+### Step 03: Get sensors filtered by type
+
+This command returns only sensors that match the given type.
+
+```
+curl "http://localhost:8080/api/v1/sensors?type=CO2"
+```
+
+- Expected response: 200 OK with a filtered list of CO2 sensors only.
+
+### Step 04: Add a reading
+
+This command adds a new reading to a specific sensor and updates its current value.
+
+```
+curl -X POST http://localhost:8080/api/v1/sensors/CO2-001/readings \
+-H "Content-Type: application/json" \
+-d "{\"id\":\"R-001\",\"timestamp\":1713695400000,\"value\":420.5}"
+```
+
+- Expected response: 201 Created with the reading object, sensor currentValue updated to 420.5.
+
+### Step 05: Get readings
+
+This command returns all historical readings for the selected sensor.
+
+```
+curl http://localhost:8080/api/v1/sensors/CO2-001/readings
+```
+
+- Expected response: 200 OK with a list of all readings for sensor CO2-001.
