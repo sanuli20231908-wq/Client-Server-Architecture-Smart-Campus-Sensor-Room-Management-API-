@@ -27,7 +27,3 @@ Run the following command:
 
 ```bash
 mvn compile
-
-i.Run:
-
-mvn exec:java
