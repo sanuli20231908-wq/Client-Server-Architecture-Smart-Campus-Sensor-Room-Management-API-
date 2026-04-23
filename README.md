@@ -140,8 +140,7 @@ curl http://localhost:8080/api/v1/sensors/CO2-001/readings
 In your report, explain the default lifecycle of a JAX-RS Resource class. Is a
 new instance instantiated for every incoming request, or does the runtime treat it as a
 singleton? Elaborate on how this architectural decision impacts the way you manage and
-synchronize your in-memory data structures (maps/lists) to vent data loss or race con-
-ditions.
+synchronize your in-memory data structures (maps/lists) to vent data loss or race conditions.
 
 ##### Answer:
 
