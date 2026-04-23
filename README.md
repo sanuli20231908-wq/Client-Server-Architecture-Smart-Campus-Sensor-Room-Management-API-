@@ -144,7 +144,7 @@ synchronize your in-memory data structures (maps/lists) to vent data loss or rac
 
 ##### Answer:
 
-In JAX-RS, the default lifecycle of a resource class is per-request. This means a new instance of the resource class is created for each incoming HTTP request and discarded after after the response is sent.
+In JAX-RS, the default lifecycle of a resource class is per-request. This means a new instance of the resource class is created for each incoming HTTP request and discarded after the response is sent.
 
 Because of this behaviour, any data stored as instance variables inside the resource class will not persist between requests. To handle shared data in this project, a separate static `DataStore` class is used, where data is stored using collections such as `Map`.
 
