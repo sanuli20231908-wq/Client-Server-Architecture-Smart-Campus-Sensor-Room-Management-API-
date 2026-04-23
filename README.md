@@ -215,9 +215,7 @@ In this case, the framework returns a 415 Unsupported Media Type response. This 
 
 ##### Question 06:
 
-You implemented this filtering using @QueryParam. Contrast this with an alterna-
-tive design where the type is part of the URL path (e.g., /api/vl/sensors/type/CO2). Why
-is the query parameter approach generally considered superior for filtering and searching
+You implemented this filtering using @QueryParam. Contrast this with an alternative design where the type is part of the URL path (e.g., /api/vl/sensors/type/CO2). Why is the query parameter approach generally considered superior for filtering and searching
 collections?
 
 ##### Answer:
